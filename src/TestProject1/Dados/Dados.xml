@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Schema xmlns="http://tempuri.org/Schema.xsd">
+  <Produto>
+    <Id>1</Id>
+    <Nome>meu nome</Nome>
+  </Produto>
+  <ProdutoId>
+    <NextHi>1</NextHi>
+  </ProdutoId>
+</Schema>
