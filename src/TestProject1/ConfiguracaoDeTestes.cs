@@ -12,17 +12,13 @@ namespace TestProject1
         public static string StringDeConexao;
 
         public static void InicializarVariaveisDeTeste(
-            string basedir, 
-            string stringDeConexao,
-            bool estaRodandoViaMSTest)
+            string basedir,
+            string stringDeConexao)
         {
             if (_variaveisDeTesteInicializadas) return;
 
             StringDeConexao = stringDeConexao;
-            if (estaRodandoViaMSTest)
-                DiretorioDeDados = basedir;
-            else
-                DiretorioDeDados = Path.Combine(basedir, @"Dados\");
+            DiretorioDeDados = Path.Combine(basedir, @"Dados\");
             DadosDeBackup = Path.Combine(DiretorioDeDados, "DadosBackup.xml");
             DadosDeTeste = Path.Combine(DiretorioDeDados, "Dados.xml");
             Esquema = Path.Combine(DiretorioDeDados, "Schema.xsd");

@@ -1,16 +1,16 @@
 ﻿using ClassLibrary1;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MbUnit.Framework;
 using NHibernate;
 
 namespace TestProject1.Testes
 {
-    [TestClass]
+    [TestFixture]
     public class TesteInclusao : TesteBase
     {
         private Produto _produtoParaIncluir;
         private ISession _session;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             Arrange();
@@ -36,13 +36,13 @@ namespace TestProject1.Testes
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NaoEhIgualAZero()
         {
             Assert.AreNotEqual(0, _produtoParaIncluir.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void EstaNoBD()
         {
             _session.Clear();

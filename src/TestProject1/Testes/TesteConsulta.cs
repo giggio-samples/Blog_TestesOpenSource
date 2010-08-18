@@ -1,17 +1,17 @@
 ﻿using ClassLibrary1;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
+using MbUnit.Framework;
 
 namespace TestProject1.Testes
 {
-    [TestClass]
+    [TestFixture]
     public class TesteConsulta : TesteBase
     {
         private const int IdParaConsultar = 1;
         private ISession _session;
         private Produto _produtoEncontrado;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             Arrange();
@@ -29,12 +29,12 @@ namespace TestProject1.Testes
             _produtoEncontrado = _session.Get<Produto>(IdParaConsultar);
         }
 
-        [TestMethod]
+        [Test]
         public void ExisteNoBD()
         {
             Assert.IsNotNull(_produtoEncontrado);
         }
-        [TestMethod]
+        [Test]
         public void TemNomeCorreto()
         {
             Assert.AreEqual("meu nome", _produtoEncontrado.Nome);

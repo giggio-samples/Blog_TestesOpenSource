@@ -1,17 +1,19 @@
 ﻿using System.Configuration;
+using System.IO;
+using System.Reflection;
 using ClassLibrary1;
 using MbUnit.Framework;
 
 namespace TestProject1
 {
-    [Test]
+    [AssemblyFixture]
     public class AssemblyInitializer
     {
-        [AssemblyInitialize]
-        public static void AssemblyInitialize(TestContext testContext)
+        [SetUp]
+        public static void AssemblyInitialize()
         {
-            var baseDir = testContext.TestDeploymentDir;
-            ConfiguracaoDeTestes.InicializarVariaveisDeTeste(baseDir, StringDeConexao, EstaRodandoViaMSTest(testContext));
+            var baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            ConfiguracaoDeTestes.InicializarVariaveisDeTeste(baseDir, StringDeConexao);
 
             FazerBackupDoBancoAtualEmDisco();
             ConfigurarNHibernateESubirEsquemaDoBancoDeDadosDeDominio();
@@ -19,7 +21,7 @@ namespace TestProject1
 
         }
 
-        [AssemblyCleanup]
+        [TearDown]
         public static void AssemblyCleanup()
         {
             OperacoesDeTestes.Atual.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeBackup);
@@ -52,11 +54,5 @@ namespace TestProject1
                 return connectionString;
             }
         }
-
-        private static bool EstaRodandoViaMSTest(TestContext testContext)
-        {
-            return testContext.Properties.Contains("AgentName");
-        }
- 
     }
 }

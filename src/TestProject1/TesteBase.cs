@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using MbUnit.Framework;
 
 namespace TestProject1
 {
     
-    [TestClass]
+    
     public abstract class TesteBase 
     {
-        [TestInitialize]
+        [SetUp]
         public virtual void TestInitialize() 
         {
             OperacoesDeTestes.Atual.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeTeste);

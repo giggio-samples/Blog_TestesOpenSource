@@ -1,16 +1,16 @@
 ﻿using ClassLibrary1;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MbUnit.Framework;
 using NHibernate;
 
 namespace TestProject1.Testes
 {
-    [TestClass]
+    [TestFixture]
     public class TesteExclusao : TesteBase
     {
         private const int IdParaExcluir = 1;
         private ISession _session;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             Arrange();
@@ -33,7 +33,7 @@ namespace TestProject1.Testes
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NaoEstaNoBD()
         {
             _session.Clear();
