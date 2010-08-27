@@ -14,23 +14,14 @@ namespace TestProject1
         {
             var baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             ConfiguracaoDeTestes.InicializarVariaveisDeTeste(baseDir, StringDeConexao);
-
-            FazerBackupDoBancoAtualEmDisco();
             ConfigurarNHibernateESubirEsquemaDoBancoDeDadosDeDominio();
-            SubirBancoDeDadosDeTeste();
-
         }
 
         [TearDown]
         public static void AssemblyCleanup()
         {
-            OperacoesDeTestes.Atual.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeBackup);
+            OperacoesDeTestes.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeBackup);
             Contexto.SessionFactory.Dispose();
-        }
-
-        private static void SubirBancoDeDadosDeTeste()
-        {
-            OperacoesDeTestes.Atual.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeTeste);
         }
 
         private static void ConfigurarNHibernateESubirEsquemaDoBancoDeDadosDeDominio()
@@ -38,12 +29,6 @@ namespace TestProject1
             Configurador.Configurar(
                 true,
                 true);
-        }
-
-        private static void FazerBackupDoBancoAtualEmDisco()
-        {
-            try { OperacoesDeTestes.Atual.SalvarBancoDeDadosEmDisco(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeBackup); }
-            catch { }
         }
 
         public static string StringDeConexao

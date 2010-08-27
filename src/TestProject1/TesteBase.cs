@@ -9,7 +9,7 @@ namespace TestProject1
         [SetUp]
         public virtual void TestInitialize() 
         {
-            OperacoesDeTestes.Atual.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeTeste);
+            OperacoesDeTestes.CarregarBancoDeDados(ConfiguracaoDeTestes.Esquema, ConfiguracaoDeTestes.DadosDeTeste);
         }
     }
     
